@@ -7,20 +7,19 @@ if (!cached) {
 }
 
 async function connectDB() {
-    
     if (cached.conn) {
         return cached.conn
     }
     
     if (!cached.promise) {
         const opts = {
-            bufferCommands:false
+            bufferCommands: false
         }
 
-        cached.promise = (await mongoose.connect(`${process.env.MONGODB_URI}/quickcart`,opts)).then( mongoose => {
+        // ✅ Remove the await here - keep it as a Promise
+        cached.promise = mongoose.connect(`${process.env.MONGODB_URI}/quickcart`, opts).then(mongoose => {
             return mongoose
         })
-
     }
 
     cached.conn = await cached.promise
