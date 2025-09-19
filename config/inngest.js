@@ -8,7 +8,7 @@ export const inngest = new Inngest({ id: "quickcart-next" });
 // Inngest function to save user daata to ddatabase
 export const syncUserCreation = inngest.createFunction(
     {
-        if:'sync-user-from-clerk'
+        id:'sync-user-from-clerk'
     },
     { event: 'clerk/user.created'},
     async ({event}) => {
